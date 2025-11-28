@@ -1,11 +1,77 @@
 ---
-import Welcome from '../components/Welcome.astro';
 import Layout from '../layouts/Layout.astro';
-
-// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
-// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
+import Hero from '../components/Hero.astro';
+import HeroRight from '../components/HeroRight.astro';
+import Hero3 from '../components/Hero3.astro';
+import Hero4 from '../components/Hero4.astro';
+import Hero5 from '../components/Hero5.astro';
+import Hero6 from '../components/Hero6.astro';
+import Hero7 from '../components/Hero7.astro';
 ---
 
 <Layout>
-	<Welcome />
+	<Hero />
+	<HeroRight />
+	<Hero3 />
+	<Hero4 />
+	<Hero5 />
+	<Hero6 />
+	<Hero7 />
 </Layout>
+
+<script is:inline>
+	(function() {
+		function initAnimations() {
+			const observerOptions = {
+				threshold: 0.1,
+				rootMargin: '0px'
+			};
+
+			const observer = new IntersectionObserver(function(entries) {
+				entries.forEach(function(entry) {
+					if (entry.isIntersecting) {
+						entry.target.classList.add('animate-in');
+						observer.unobserve(entry.target);
+					}
+				});
+			}, observerOptions);
+
+			const leftSections = document.querySelectorAll('.hero-content-left');
+			const rightSections = document.querySelectorAll('.hero-content-right');
+
+			// Animate first section immediately
+			if (leftSections.length > 0) {
+				const firstSection = leftSections[0];
+				// Force reflow to ensure initial state is applied
+				firstSection.offsetHeight;
+				// Trigger animation
+				requestAnimationFrame(function() {
+					firstSection.classList.add('animate-in');
+				});
+			}
+
+			// Observe all other sections
+			leftSections.forEach(function(section, index) {
+				if (index > 0) {
+					observer.observe(section);
+				}
+			});
+
+			rightSections.forEach(function(section) {
+				observer.observe(section);
+			});
+		}
+
+		// Multiple ways to ensure it runs
+		if (document.readyState === 'loading') {
+			document.addEventListener('DOMContentLoaded', initAnimations);
+		} else {
+			initAnimations();
+		}
+		
+		// Also try on window load as backup
+		window.addEventListener('load', function() {
+			setTimeout(initAnimations, 100);
+		});
+	})();
+</script>

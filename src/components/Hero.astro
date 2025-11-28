@@ -1,0 +1,39 @@
+---
+import bgImage from '../assets/bg1.jpg';
+---
+
+<section class="relative w-full h-[500px] sm:h-[600px] lg:h-[700px] overflow-hidden">
+  <!-- Background Image with Overlay -->
+  <div class="absolute inset-0">
+    <img
+      src={bgImage.src}
+      alt="Renaz Teknik Background"
+      class="w-full h-full object-cover blur-xs md:blur-sm"
+    />
+    <!-- Black Overlay - Lighter on mobile -->
+    <div class="absolute inset-0 bg-black/30 md:bg-black/40"></div>
+    <!-- Bottom Fade to Black - Shorter gradient -->
+    <div class="absolute inset-0" style="background: linear-gradient(to top, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.5) 15%, transparent 30%);"></div>
+  </div>
+
+  <!-- Content -->
+  <div class="relative z-10 h-full flex items-center">
+    <div class="max-w-7xl mx-auto w-full px-4 sm:px-6 lg:px-8">
+      <div class="max-w-2xl mx-auto md:mx-0 hero-content-left text-center md:text-left">
+        <!-- Header -->
+        <h1 class="text-4xl sm:text-5xl lg:text-7xl font-bold text-white mb-4 sm:mb-6 leading-tight" style="font-family: 'Roboto Condensed', sans-serif;">
+          Renaz Teknik
+        </h1>
+        
+        <!-- Yellow Accent Line -->
+        <div class="h-1 w-24 bg-[#fad000] mb-6 sm:mb-8 mx-auto md:mx-0"></div>
+        
+        <!-- Description Text -->
+        <p class="text-base sm:text-lg lg:text-xl text-white leading-relaxed px-2 sm:px-0" style="font-family: 'Roboto Condensed', sans-serif;">
+          Hayallerindeki gibi şık ve zarif detaylara sahip bir banyo mu istiyorsun? Ya da dar bir banyo alanın bulunuyor ve alanın çok daha derinlikli bir görünüm elde etmesini mi arzuluyorsun? Son zamanlarda birçok insan, yaşam alanlarındaki banyonun görünümünü güzelleştirmek ve fonksiyonunu arttırmak istiyor. Bu durum, banyo tadilatı hizmetinden yararlanmayı zorunlu kılıyor.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+

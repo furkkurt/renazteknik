@@ -1,0 +1,55 @@
+@import "tailwindcss";
+
+@theme {
+  --color-brand-yellow: #fad000;
+  --color-brand-cream: #e3decf;
+  --color-brand-light-gray: #eeeeee;
+  --color-brand-medium-gray: #b7b7b7;
+  --color-brand-black: #000000;
+  --font-roboto-condensed: 'Roboto Condensed', sans-serif;
+}
+
+* {
+  font-family: 'Roboto Condensed', sans-serif;
+}
+
+/* Scroll Animations */
+@keyframes slideInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-150px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideInRight {
+  from {
+    opacity: 0;
+    transform: translateX(150px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.hero-content-left:not(.animate-in) {
+  opacity: 0;
+  transform: translateX(-150px);
+}
+
+.hero-content-right:not(.animate-in) {
+  opacity: 0;
+  transform: translateX(150px);
+}
+
+.hero-content-left.animate-in {
+  animation: slideInLeft 1s ease-out forwards;
+}
+
+.hero-content-right.animate-in {
+  animation: slideInRight 1s ease-out forwards;
+}

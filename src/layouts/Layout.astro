@@ -1,22 +1,129 @@
+---
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import WhatsAppButton from '../components/WhatsAppButton.astro';
+import '../styles/global.css';
+
+interface Props {
+	title?: string;
+	description?: string;
+	keywords?: string;
+	canonicalURL?: string;
+}
+
+const {
+	title = "Renaz Teknik - Mutfak, Banyo ve WC Tamirat Tadilat | renazteknik.com",
+	description = "Renaz Teknik - Samsun'da mutfak, banyo ve WC tamirat tadilat hizmetleri. Cihazla su kaçak tespiti, kanal görüntüleme, sıhhi tesisat çözümleri. Profesyonel hizmet, güvenilir çözümler.",
+	keywords = "mutfak tamirat, banyo tadilat, WC tamirat, su kaçak tespiti, kanal görüntüleme, sıhhi tesisat, Samsun tamirat, renaz teknik, banyo yenileme, anahtar teslim banyo",
+	canonicalURL = Astro.url.href,
+} = Astro.props;
+
+const siteURL = "https://renazteknik.com";
+const fullTitle = title.includes("renazteknik.com") ? title : `${title} | renazteknik.com`;
+---
+
 <!doctype html>
-<html lang="en">
+<html lang="tr">
 	<head>
 		<meta charset="UTF-8" />
-		<meta name="viewport" content="width=device-width" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		
+		<!-- Favicon -->
+		<link rel="icon" type="image/svg+xml" href="/icon.svg" />
+		<link rel="apple-touch-icon" href="/icon.svg" />
+		
+		<!-- Primary Meta Tags -->
+		<title>{fullTitle}</title>
+		<meta name="title" content={fullTitle} />
+		<meta name="description" content={description} />
+		<meta name="keywords" content={keywords} />
+		<meta name="author" content="Renaz Teknik" />
+		<meta name="robots" content="index, follow" />
+		<meta name="language" content="Turkish" />
+		<meta name="revisit-after" content="7 days" />
+		<link rel="canonical" href={canonicalURL} />
+		
+		<!-- Open Graph / Facebook -->
+		<meta property="og:type" content="website" />
+		<meta property="og:url" content={canonicalURL} />
+		<meta property="og:title" content={fullTitle} />
+		<meta property="og:description" content={description} />
+		<meta property="og:site_name" content="Renaz Teknik" />
+		<meta property="og:locale" content="tr_TR" />
+		
+		<!-- Twitter -->
+		<meta name="twitter:card" content="summary_large_image" />
+		<meta name="twitter:title" content={fullTitle} />
+		<meta name="twitter:description" content={description} />
+		
+		<!-- Additional Meta Tags -->
+		<meta name="theme-color" content="#fad000" />
 		<meta name="generator" content={Astro.generator} />
-		<title>Astro Basics</title>
+		
+		<!-- Fonts -->
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@300;400;700&display=swap" rel="stylesheet" />
+		
+		<!-- Structured Data (JSON-LD) -->
+		<script type="application/ld+json" set:html={JSON.stringify({
+			"@context": "https://schema.org",
+			"@type": "LocalBusiness",
+			"name": "Renaz Teknik",
+			"image": `${siteURL}/icon.svg`,
+			"@id": siteURL,
+			"url": siteURL,
+			"telephone": "+905346706294",
+			"priceRange": "$$",
+			"address": {
+				"@type": "PostalAddress",
+				"streetAddress": "ZAFER MAH. INCE SK. BIRLIK APARTMANI NO: 56 A IÇ KAPI NO: 1",
+				"addressLocality": "ILKADIM",
+				"addressRegion": "SAMSUN",
+				"addressCountry": "TR"
+			},
+			"geo": {
+				"@type": "GeoCoordinates",
+				"latitude": "41.2867",
+				"longitude": "36.3300"
+			},
+			"openingHoursSpecification": {
+				"@type": "OpeningHoursSpecification",
+				"dayOfWeek": [
+					"Monday",
+					"Tuesday",
+					"Wednesday",
+					"Thursday",
+					"Friday",
+					"Saturday"
+				],
+				"opens": "08:00",
+				"closes": "18:00"
+			},
+			"sameAs": [
+				"https://wa.me/905346706294"
+			],
+			"description": description,
+			"areaServed": {
+				"@type": "City",
+				"name": "Samsun"
+			},
+			"serviceType": [
+				"Mutfak Tamirat",
+				"Banyo Tadilat",
+				"WC Tamirat",
+				"Su Kaçak Tespiti",
+				"Kanal Görüntüleme",
+				"Sıhhi Tesisat"
+			]
+		}).replace(/</g, '\\u003c')} />
 	</head>
-	<body>
-		<slot />
+	<body class="min-h-screen flex flex-col bg-[#eeeeee]">
+		<Header />
+		<main class="flex-grow">
+			<slot />
+		</main>
+		<Footer />
+		<WhatsAppButton />
 	</body>
 </html>
-
-<style>
-	html,
-	body {
-		margin: 0;
-		width: 100%;
-		height: 100%;
-	}
-</style>
