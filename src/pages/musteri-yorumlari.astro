@@ -1,0 +1,518 @@
+---
+import Layout from '../layouts/Layout.astro';
+import commentsDoodle from '../assets/commentsDoodle.avif';
+
+const services = [
+	"Sıhhi Tesisat Çözümleri",
+	"Kombi Bakım ve Arıza Çözümleri",
+	"Petek Temizliği",
+	"Tıkanıklık Açma",
+	"Su Kaçağı Tespiti",
+	"Batarya, Musluk, Klozet Tamir & Değişimi",
+	"Banyo & Mutfak Yenileme (Tadilat)",
+	"Diğer"
+];
+---
+
+<Layout
+	title="Müşteri Yorumları | renazteknik.com"
+	description="Müşterilerimizin deneyimlerini ve yorumlarını okuyun. Kendi yorumunuzu da paylaşabilirsiniz."
+>
+	<div class="tiled-background-wrapper relative min-h-screen py-12">
+		<div 
+			class="tiled-background-pattern parallax-bg" 
+			style={`background-image: url('${commentsDoodle.src}');`}
+			aria-hidden="true"
+		></div>
+		<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 relative z-10">
+		<h1 class="text-4xl sm:text-5xl lg:text-6xl font-bold text-[#000000] mb-6" style="font-family: 'Roboto Condensed', sans-serif;">
+			Müşteri Yorumları
+		</h1>
+		<div class="h-1 w-24 bg-[#fad000] mb-8"></div>
+		
+		<div class="max-w-4xl mx-auto space-y-8">
+			<!-- Comment Form -->
+			<div class="bg-white p-8 rounded-lg shadow-md">
+				<h2 class="text-2xl font-bold text-[#000000] mb-6" style="font-family: 'Roboto Condensed', sans-serif;">
+					Yorum Yapın
+				</h2>
+				<form id="comment-form" class="space-y-4">
+					<div>
+						<label for="commenter-name" class="block text-sm font-medium text-[#000000] mb-2" style="font-family: 'Roboto Condensed', sans-serif;">
+							İsim (İsteğe Bağlı)
+						</label>
+						<input
+							type="text"
+							id="commenter-name"
+							name="name"
+							class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#fad000] focus:border-[#fad000] outline-none"
+							placeholder="İsimsiz olarak yorum yapmak için boş bırakın"
+						/>
+					</div>
+					
+					<div>
+						<label for="comment-service" class="block text-sm font-medium text-[#000000] mb-2" style="font-family: 'Roboto Condensed', sans-serif;">
+							Kullandığınız Hizmet <span class="text-red-500">*</span>
+						</label>
+						<select
+							id="comment-service"
+							name="service"
+							required
+							class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#fad000] focus:border-[#fad000] outline-none"
+						>
+							<option value="">Hizmet Seçiniz</option>
+							{services.map((service) => (
+								<option value={service}>{service}</option>
+							))}
+						</select>
+					</div>
+					
+					<div>
+						<label for="comment-text" class="block text-sm font-medium text-[#000000] mb-2" style="font-family: 'Roboto Condensed', sans-serif;">
+							Yorumunuz <span class="text-red-500">*</span>
+						</label>
+						<textarea
+							id="comment-text"
+							name="comment"
+							required
+							rows="5"
+							class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#fad000] focus:border-[#fad000] outline-none resize-none"
+							placeholder="Yorumunuzu buraya yazın..."
+						></textarea>
+					</div>
+					
+					<button
+						type="submit"
+						class="w-full bg-[#fad000] text-[#000000] font-bold py-3 px-6 rounded-lg hover:bg-[#e6c200] transition-colors duration-200 uppercase tracking-wider"
+						style="font-family: 'Roboto Condensed', sans-serif;"
+					>
+						Yorumu Gönder
+					</button>
+				</form>
+			</div>
+			
+			<!-- Comments Display -->
+			<div id="comments-container" class="space-y-6">
+				<div class="bg-white p-8 rounded-lg shadow-md">
+					<p class="text-lg text-[#000000] text-center" style="font-family: 'Roboto Condensed', sans-serif;">
+						Henüz yorum yapılmamış. İlk yorumu siz yapın!
+					</p>
+				</div>
+			</div>
+			
+			<!-- Pagination -->
+			<div id="pagination-container" class="hidden flex justify-center items-center space-x-2">
+				<!-- Pagination buttons will be generated here -->
+			</div>
+		</div>
+	</div>
+</div>
+</Layout>
+
+<style>
+	.tiled-background-wrapper {
+		--tile-size: 200px;
+		background-color: #eeeeee;
+		position: relative;
+	}
+
+	.tiled-background-pattern {
+		position: absolute;
+		inset: 0;
+		pointer-events: none;
+		z-index: 0;
+		opacity: 0.2;
+		background-size: 200px 200px;
+		background-repeat: repeat;
+		background-position: 0 0;
+	}
+
+	.tiled-background-wrapper > div:not(.tiled-background-pattern) {
+		position: relative;
+		z-index: 1;
+	}
+
+	.parallax-bg {
+		will-change: transform;
+		backface-visibility: hidden;
+		-webkit-backface-visibility: hidden;
+	}
+
+	.comment-item {
+		border-left: 3px solid #fad000;
+	}
+	
+	.reply-item {
+		margin-left: 2rem;
+		border-left: 2px solid #e0e0e0;
+	}
+</style>
+
+<script>
+	interface Comment {
+		id: string;
+		name: string | null;
+		service: string;
+		comment: string;
+		date: string;
+		replies: Comment[];
+	}
+	
+	const COMMENTS_PER_PAGE = 20;
+	const STORAGE_KEY = 'renaz_comments';
+	
+	// Get comments from localStorage
+	function getComments(): Comment[] {
+		if (typeof window === 'undefined') return [];
+		const stored = localStorage.getItem(STORAGE_KEY);
+		return stored ? JSON.parse(stored) : [];
+	}
+	
+	// Save comments to localStorage
+	function saveComments(comments: Comment[]): void {
+		if (typeof window === 'undefined') return;
+		localStorage.setItem(STORAGE_KEY, JSON.stringify(comments));
+	}
+	
+	// Generate unique ID
+	function generateId(): string {
+		return Date.now().toString(36) + Math.random().toString(36).substr(2);
+	}
+	
+	// Format date
+	function formatDate(dateString: string): string {
+		const date = new Date(dateString);
+		return date.toLocaleDateString('tr-TR', {
+			year: 'numeric',
+			month: 'long',
+			day: 'numeric',
+			hour: '2-digit',
+			minute: '2-digit'
+		});
+	}
+	
+	// Render comment
+	function renderComment(comment: Comment, isReply: boolean = false): string {
+		const name = comment.name || 'İsimsiz';
+		const indentClass = isReply ? 'reply-item pl-6' : '';
+		
+		let html = `
+			<div class="comment-item ${indentClass} bg-white p-6 rounded-lg shadow-md mb-4">
+				<div class="flex justify-between items-start mb-3">
+					<div>
+						<h3 class="text-lg font-bold text-[#000000]" style="font-family: 'Roboto Condensed', sans-serif;">
+							${name}
+						</h3>
+						<p class="text-sm text-gray-600" style="font-family: 'Roboto Condensed', sans-serif;">
+							${comment.service}
+						</p>
+					</div>
+					<span class="text-sm text-gray-500" style="font-family: 'Roboto Condensed', sans-serif;">
+						${formatDate(comment.date)}
+					</span>
+				</div>
+				<p class="text-[#000000] leading-relaxed mb-3" style="font-family: 'Roboto Condensed', sans-serif;">
+					${comment.comment.replace(/\n/g, '<br>')}
+				</p>
+				${!isReply ? `
+					<button
+						onclick="showReplyForm('${comment.id}')"
+						class="text-sm text-[#fad000] hover:text-[#e6c200] font-medium"
+						style="font-family: 'Roboto Condensed', sans-serif;"
+					>
+						Yanıtla
+					</button>
+					<div id="reply-form-${comment.id}" class="hidden mt-4 pt-4 border-t border-gray-200">
+						<form onsubmit="handleReply(event, '${comment.id}')" class="space-y-3">
+							<input
+								type="text"
+								id="reply-name-${comment.id}"
+								placeholder="İsim (İsteğe Bağlı)"
+								class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#fad000] focus:border-[#fad000] outline-none text-sm"
+							/>
+							<textarea
+								id="reply-comment-${comment.id}"
+								required
+								rows="3"
+								placeholder="Yanıtınızı yazın..."
+								class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#fad000] focus:border-[#fad000] outline-none resize-none text-sm"
+							></textarea>
+							<div class="flex space-x-2">
+								<button
+									type="submit"
+									class="bg-[#fad000] text-[#000000] font-bold py-2 px-4 rounded-lg hover:bg-[#e6c200] transition-colors duration-200 text-sm uppercase"
+									style="font-family: 'Roboto Condensed', sans-serif;"
+								>
+									Gönder
+								</button>
+								<button
+									type="button"
+									onclick="hideReplyForm('${comment.id}')"
+									class="bg-gray-200 text-[#000000] font-bold py-2 px-4 rounded-lg hover:bg-gray-300 transition-colors duration-200 text-sm"
+									style="font-family: 'Roboto Condensed', sans-serif;"
+								>
+									İptal
+								</button>
+							</div>
+						</form>
+					</div>
+				` : ''}
+			</div>
+		`;
+		
+		// Render replies
+		if (comment.replies && comment.replies.length > 0) {
+			html += comment.replies.map(reply => renderComment(reply, true)).join('');
+		}
+		
+		return html;
+	}
+	
+	// Display comments with pagination
+	function displayComments(page: number = 1): void {
+		const comments = getComments();
+		const container = document.getElementById('comments-container');
+		const paginationContainer = document.getElementById('pagination-container');
+		
+		if (!container) return;
+		
+		// Sort by date (newest first)
+		const sortedComments = [...comments].sort((a, b) => 
+			new Date(b.date).getTime() - new Date(a.date).getTime()
+		);
+		
+		const totalPages = Math.ceil(sortedComments.length / COMMENTS_PER_PAGE);
+		const startIndex = (page - 1) * COMMENTS_PER_PAGE;
+		const endIndex = startIndex + COMMENTS_PER_PAGE;
+		const pageComments = sortedComments.slice(startIndex, endIndex);
+		
+		if (pageComments.length === 0) {
+			container.innerHTML = `
+				<div class="bg-white p-8 rounded-lg shadow-md">
+					<p class="text-lg text-[#000000] text-center" style="font-family: 'Roboto Condensed', sans-serif;">
+						Henüz yorum yapılmamış. İlk yorumu siz yapın!
+					</p>
+				</div>
+			`;
+			if (paginationContainer) paginationContainer.classList.add('hidden');
+			return;
+		}
+		
+		container.innerHTML = pageComments.map(comment => renderComment(comment)).join('');
+		
+		// Render pagination
+		if (totalPages > 1 && paginationContainer) {
+			paginationContainer.classList.remove('hidden');
+			let paginationHTML = '';
+			
+			if (page > 1) {
+				paginationHTML += `
+					<button
+						onclick="displayComments(${page - 1})"
+						class="px-4 py-2 bg-[#fad000] text-[#000000] font-bold rounded-lg hover:bg-[#e6c200] transition-colors duration-200"
+						style="font-family: 'Roboto Condensed', sans-serif;"
+					>
+						Önceki
+					</button>
+				`;
+			}
+			
+			for (let i = 1; i <= totalPages; i++) {
+				if (i === page) {
+					paginationHTML += `
+						<span class="px-4 py-2 bg-[#000000] text-[#fad000] font-bold rounded-lg" style="font-family: 'Roboto Condensed', sans-serif;">
+							${i}
+						</span>
+					`;
+				} else if (i === 1 || i === totalPages || (i >= page - 2 && i <= page + 2)) {
+					paginationHTML += `
+						<button
+							onclick="displayComments(${i})"
+							class="px-4 py-2 bg-gray-200 text-[#000000] font-bold rounded-lg hover:bg-gray-300 transition-colors duration-200"
+							style="font-family: 'Roboto Condensed', sans-serif;"
+						>
+							${i}
+						</button>
+					`;
+				} else if (i === page - 3 || i === page + 3) {
+					paginationHTML += `<span class="px-2">...</span>`;
+				}
+			}
+			
+			if (page < totalPages) {
+				paginationHTML += `
+					<button
+						onclick="displayComments(${page + 1})"
+						class="px-4 py-2 bg-[#fad000] text-[#000000] font-bold rounded-lg hover:bg-[#e6c200] transition-colors duration-200"
+						style="font-family: 'Roboto Condensed', sans-serif;"
+					>
+						Sonraki
+					</button>
+				`;
+			}
+			
+			paginationContainer.innerHTML = paginationHTML;
+		} else if (paginationContainer) {
+			paginationContainer.classList.add('hidden');
+		}
+	}
+	
+	// Handle comment form submission
+	function handleCommentSubmit(event: Event): void {
+		event.preventDefault();
+		const form = event.target as HTMLFormElement;
+		const formData = new FormData(form);
+		
+		const name = (formData.get('name') as string)?.trim() || null;
+		const service = formData.get('service') as string;
+		const comment = (formData.get('comment') as string)?.trim();
+		
+		if (!service || !comment) {
+			alert('Lütfen tüm gerekli alanları doldurun.');
+			return;
+		}
+		
+		const newComment: Comment = {
+			id: generateId(),
+			name,
+			service,
+			comment,
+			date: new Date().toISOString(),
+			replies: []
+		};
+		
+		const comments = getComments();
+		comments.push(newComment);
+		saveComments(comments);
+		
+		form.reset();
+		displayComments(1);
+		
+		// Scroll to top of comments
+		const container = document.getElementById('comments-container');
+		if (container) {
+			container.scrollIntoView({ behavior: 'smooth', block: 'start' });
+		}
+	}
+	
+	// Handle reply form submission
+	function handleReply(event: Event, parentId: string): void {
+		event.preventDefault();
+		const form = event.target as HTMLFormElement;
+		const nameInput = document.getElementById(`reply-name-${parentId}`) as HTMLInputElement;
+		const commentInput = document.getElementById(`reply-comment-${parentId}`) as HTMLTextAreaElement;
+		
+		const name = nameInput.value.trim() || null;
+		const comment = commentInput.value.trim();
+		
+		if (!comment) {
+			alert('Lütfen yanıtınızı yazın.');
+			return;
+		}
+		
+		const reply: Comment = {
+			id: generateId(),
+			name,
+			service: 'Yanıt',
+			comment,
+			date: new Date().toISOString(),
+			replies: []
+		};
+		
+		const comments = getComments();
+		const parentComment = comments.find(c => c.id === parentId);
+		
+		if (parentComment) {
+			if (!parentComment.replies) {
+				parentComment.replies = [];
+			}
+			parentComment.replies.push(reply);
+			saveComments(comments);
+			
+			form.reset();
+			hideReplyForm(parentId);
+			displayComments(1);
+		}
+	}
+	
+	// Show reply form
+	function showReplyForm(commentId: string): void {
+		const form = document.getElementById(`reply-form-${commentId}`);
+		if (form) {
+			form.classList.remove('hidden');
+		}
+	}
+	
+	// Hide reply form
+	function hideReplyForm(commentId: string): void {
+		const form = document.getElementById(`reply-form-${commentId}`);
+		if (form) {
+			form.classList.add('hidden');
+			const nameInput = document.getElementById(`reply-name-${commentId}`) as HTMLInputElement;
+			const commentInput = document.getElementById(`reply-comment-${commentId}`) as HTMLTextAreaElement;
+			if (nameInput) nameInput.value = '';
+			if (commentInput) commentInput.value = '';
+		}
+	}
+	
+	// Make functions globally available
+	(window as any).displayComments = displayComments;
+	(window as any).handleReply = handleReply;
+	(window as any).showReplyForm = showReplyForm;
+	(window as any).hideReplyForm = hideReplyForm;
+	
+	// Initialize parallax
+	function initParallax() {
+		const parallaxElements = document.querySelectorAll('.parallax-bg');
+		if (parallaxElements.length === 0) return;
+
+		function updateParallax() {
+			const scrollY = window.pageYOffset || window.scrollY || document.documentElement.scrollTop;
+			const scrollFactor = 0.25;
+
+			parallaxElements.forEach((element) => {
+				const htmlElement = element as HTMLElement;
+				const wrapper = htmlElement.closest('.tiled-background-wrapper') as HTMLElement;
+				if (!wrapper) return;
+
+				const offsetY = scrollY * scrollFactor;
+				const tileSize = 200;
+				const normalizedOffset = offsetY % tileSize;
+				
+				htmlElement.style.backgroundPosition = `0 ${normalizedOffset}px`;
+			});
+		}
+
+		let ticking = false;
+		function onScroll() {
+			if (!ticking) {
+				window.requestAnimationFrame(() => {
+					updateParallax();
+					ticking = false;
+				});
+				ticking = true;
+			}
+		}
+
+		updateParallax();
+		window.addEventListener('scroll', onScroll, { passive: true });
+		window.addEventListener('resize', updateParallax);
+
+		return () => {
+			window.removeEventListener('scroll', onScroll);
+			window.removeEventListener('resize', updateParallax);
+		};
+	}
+
+	// Initialize
+	document.addEventListener('DOMContentLoaded', () => {
+		initParallax();
+		
+		const form = document.getElementById('comment-form');
+		if (form) {
+			form.addEventListener('submit', handleCommentSubmit);
+		}
+		displayComments(1);
+	});
+</script>
+

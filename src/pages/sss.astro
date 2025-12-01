@@ -1,0 +1,392 @@
+---
+import Layout from '../layouts/Layout.astro';
+import fqaDoodle from '../assets/fqaDoodle.webp';
+---
+
+<Layout
+	title="Sıkça Sorulan Sorular (SSS) | renazteknik.com"
+	description="Sıhhi tesisat, kombi bakımı, petek temizliği ve diğer hizmetlerimiz hakkında sıkça sorulan sorular ve cevapları."
+>
+	<div class="tiled-background-wrapper relative min-h-screen py-12">
+		<div 
+			class="tiled-background-pattern parallax-bg" 
+			style={`background-image: url('${fqaDoodle.src}');`}
+			aria-hidden="true"
+		></div>
+		<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 relative z-10">
+		<h1 class="text-4xl sm:text-5xl lg:text-6xl font-bold text-[#000000] mb-6" style="font-family: 'Roboto Condensed', sans-serif;">
+			Sıkça Sorulan Sorular (SSS)
+		</h1>
+		<div class="h-1 w-24 bg-[#fad000] mb-8"></div>
+		
+		<div class="max-w-4xl mx-auto space-y-6">
+			<!-- FAQ Item -->
+			<div class="bg-white rounded-lg shadow-md overflow-hidden">
+				<button
+					class="faq-question w-full text-left px-8 py-6 flex justify-between items-center hover:bg-gray-50 transition-colors duration-200"
+					data-target="faq-1"
+				>
+					<h2 class="text-xl font-bold text-[#000000]" style="font-family: 'Roboto Condensed', sans-serif;">
+						1. Kombi bakımı ne sıklıkla yapılmalı?
+					</h2>
+					<svg class="faq-icon w-6 h-6 text-[#fad000] transform transition-transform duration-200" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+						<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+					</svg>
+				</button>
+				<div id="faq-1" class="faq-answer hidden px-8 pb-6">
+					<p class="text-lg text-[#000000] leading-relaxed" style="font-family: 'Roboto Condensed', sans-serif;">
+						Kombi bakımı yılda en az bir kez, ideal olarak kış sezonundan önce yapılmalıdır. Düzenli bakım ile kombinizin ömrü uzar, enerji verimliliği artar ve beklenmedik arızalar önlenir. Bakım sırasında filtre temizliği, basınç kontrolü, petek hava alma ve genel sistem kontrolü yapılır.
+					</p>
+				</div>
+			</div>
+
+			<!-- FAQ Item -->
+			<div class="bg-white rounded-lg shadow-md overflow-hidden">
+				<button
+					class="faq-question w-full text-left px-8 py-6 flex justify-between items-center hover:bg-gray-50 transition-colors duration-200"
+					data-target="faq-2"
+				>
+					<h2 class="text-xl font-bold text-[#000000]" style="font-family: 'Roboto Condensed', sans-serif;">
+						2. Su kaçağı tespiti kırma-dökme gerektirir mi?
+					</h2>
+					<svg class="faq-icon w-6 h-6 text-[#fad000] transform transition-transform duration-200" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+						<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+					</svg>
+				</button>
+				<div id="faq-2" class="faq-answer hidden px-8 pb-6">
+					<p class="text-lg text-[#000000] leading-relaxed" style="font-family: 'Roboto Condensed', sans-serif;">
+						Hayır, modern teknoloji sayesinde artık su kaçağı tespiti kırma-dökme gerektirmez. Akustik dinleme cihazları ve termal kameralar ile kaçağın yeri nokta atışı tespit edilir. Bu sayede sadece gerekli bölgeye minimal müdahale yapılarak sorun çözülür ve gereksiz tadilat masraflarından kaçınılır.
+					</p>
+				</div>
+			</div>
+
+			<!-- FAQ Item -->
+			<div class="bg-white rounded-lg shadow-md overflow-hidden">
+				<button
+					class="faq-question w-full text-left px-8 py-6 flex justify-between items-center hover:bg-gray-50 transition-colors duration-200"
+					data-target="faq-3"
+				>
+					<h2 class="text-xl font-bold text-[#000000]" style="font-family: 'Roboto Condensed', sans-serif;">
+						3. Petek temizliği ne kadar sıklıkla yapılmalı?
+					</h2>
+					<svg class="faq-icon w-6 h-6 text-[#fad000] transform transition-transform duration-200" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+						<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+					</svg>
+				</button>
+				<div id="faq-3" class="faq-answer hidden px-8 pb-6">
+					<p class="text-lg text-[#000000] leading-relaxed" style="font-family: 'Roboto Condensed', sans-serif;">
+						Petek temizliği genellikle 3-5 yılda bir yapılmalıdır. Ancak peteklerden yeterli ısı gelmiyorsa, kombi sürekli çalışıyorsa veya peteklerin alt kısımları soğuk kalıyorsa daha erken temizlik gerekebilir. Düzenli petek temizliği %30-40 daha fazla ısı verimi sağlar ve doğalgaz faturanızı önemli ölçüde düşürür.
+					</p>
+				</div>
+			</div>
+
+			<!-- FAQ Item -->
+			<div class="bg-white rounded-lg shadow-md overflow-hidden">
+				<button
+					class="faq-question w-full text-left px-8 py-6 flex justify-between items-center hover:bg-gray-50 transition-colors duration-200"
+					data-target="faq-4"
+				>
+					<h2 class="text-xl font-bold text-[#000000]" style="font-family: 'Roboto Condensed', sans-serif;">
+						4. Tıkanıklık açma işlemi ne kadar sürer?
+					</h2>
+					<svg class="faq-icon w-6 h-6 text-[#fad000] transform transition-transform duration-200" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+						<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+					</svg>
+				</button>
+				<div id="faq-4" class="faq-answer hidden px-8 pb-6">
+					<p class="text-lg text-[#000000] leading-relaxed" style="font-family: 'Roboto Condensed', sans-serif;">
+						Tıkanıklık açma işleminin süresi tıkanıklığın türüne ve şiddetine göre değişir. Basit tıkanıklıklar 30-60 dakika içinde çözülebilirken, daha karmaşık durumlarda 1-2 saat sürebilir. Kameralı sistemler ile tıkanıklığın yeri hızlıca tespit edilir ve profesyonel cihazlarla etkili şekilde açılır.
+					</p>
+				</div>
+			</div>
+
+			<!-- FAQ Item -->
+			<div class="bg-white rounded-lg shadow-md overflow-hidden">
+				<button
+					class="faq-question w-full text-left px-8 py-6 flex justify-between items-center hover:bg-gray-50 transition-colors duration-200"
+					data-target="faq-5"
+				>
+					<h2 class="text-xl font-bold text-[#000000]" style="font-family: 'Roboto Condensed', sans-serif;">
+						5. Acil durumlarda ne kadar hızlı ulaşabilirsiniz?
+					</h2>
+					<svg class="faq-icon w-6 h-6 text-[#fad000] transform transition-transform duration-200" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+						<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+					</svg>
+				</button>
+				<div id="faq-5" class="faq-answer hidden px-8 pb-6">
+					<p class="text-lg text-[#000000] leading-relaxed" style="font-family: 'Roboto Condensed', sans-serif;">
+						7/24 acil müdahale hizmetimiz bulunmaktadır. Su kaçağı, patlama, tıkanıklık gibi acil durumlarda mümkün olan en kısa sürede yerinize ulaşmaya çalışıyoruz. Genellikle 1-2 saat içinde ekip gönderilebilir. Acil durumlar için iletişim kanallarımızdan bize ulaşabilirsiniz.
+					</p>
+				</div>
+			</div>
+
+			<!-- FAQ Item -->
+			<div class="bg-white rounded-lg shadow-md overflow-hidden">
+				<button
+					class="faq-question w-full text-left px-8 py-6 flex justify-between items-center hover:bg-gray-50 transition-colors duration-200"
+					data-target="faq-6"
+				>
+					<h2 class="text-xl font-bold text-[#000000]" style="font-family: 'Roboto Condensed', sans-serif;">
+						6. Banyo tadilatı ne kadar sürer?
+					</h2>
+					<svg class="faq-icon w-6 h-6 text-[#fad000] transform transition-transform duration-200" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+						<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+					</svg>
+				</button>
+				<div id="faq-6" class="faq-answer hidden px-8 pb-6">
+					<p class="text-lg text-[#000000] leading-relaxed" style="font-family: 'Roboto Condensed', sans-serif;">
+						Banyo tadilatının süresi projenin kapsamına göre değişir. Küçük değişiklikler 3-5 gün sürebilirken, tam yenileme projeleri 10-15 iş günü sürebilir. Proje başlangıcında detaylı bir zaman planlaması yapılır ve size net bir teslimat tarihi verilir. Süreç boyunca güncel bilgilendirme yapılır.
+					</p>
+				</div>
+			</div>
+
+			<!-- FAQ Item -->
+			<div class="bg-white rounded-lg shadow-md overflow-hidden">
+				<button
+					class="faq-question w-full text-left px-8 py-6 flex justify-between items-center hover:bg-gray-50 transition-colors duration-200"
+					data-target="faq-7"
+				>
+					<h2 class="text-xl font-bold text-[#000000]" style="font-family: 'Roboto Condensed', sans-serif;">
+						7. Hizmetleriniz garantili mi?
+					</h2>
+					<svg class="faq-icon w-6 h-6 text-[#fad000] transform transition-transform duration-200" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+						<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+					</svg>
+				</button>
+				<div id="faq-7" class="faq-answer hidden px-8 pb-6">
+					<p class="text-lg text-[#000000] leading-relaxed" style="font-family: 'Roboto Condensed', sans-serif;">
+						Evet, tüm hizmetlerimiz garantilidir. İşçilik garantisi ve kullanılan malzemelerin üretici garantisi sağlanır. Tamirat işlemlerinde genellikle 1 yıl, yenileme projelerinde ise daha uzun süreli garanti verilir. Garanti süresi ve kapsamı her proje için ayrıntılı olarak belirtilir.
+					</p>
+				</div>
+			</div>
+
+			<!-- FAQ Item -->
+			<div class="bg-white rounded-lg shadow-md overflow-hidden">
+				<button
+					class="faq-question w-full text-left px-8 py-6 flex justify-between items-center hover:bg-gray-50 transition-colors duration-200"
+					data-target="faq-8"
+				>
+					<h2 class="text-xl font-bold text-[#000000]" style="font-family: 'Roboto Condensed', sans-serif;">
+						8. Kombi su eksiltiyorsa ne yapmalıyım?
+					</h2>
+					<svg class="faq-icon w-6 h-6 text-[#fad000] transform transition-transform duration-200" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+						<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+					</svg>
+				</button>
+				<div id="faq-8" class="faq-answer hidden px-8 pb-6">
+					<p class="text-lg text-[#000000] leading-relaxed" style="font-family: 'Roboto Condensed', sans-serif;">
+						Kombi su eksiltmesi ciddi bir sorunun işareti olabilir. İlk olarak basıncı kontrol edin, düşükse doldurun. Eğer sürekli eksiliyorsa genleşme tankı arızası, tesisat kaçağı veya petek vanası sorunu olabilir. Bu durumda derhal profesyonel bir servis çağırın. Kaçak tespiti ve gerekli tamirat işlemlerini yapıyoruz.
+					</p>
+				</div>
+			</div>
+
+			<!-- FAQ Item -->
+			<div class="bg-white rounded-lg shadow-md overflow-hidden">
+				<button
+					class="faq-question w-full text-left px-8 py-6 flex justify-between items-center hover:bg-gray-50 transition-colors duration-200"
+					data-target="faq-9"
+				>
+					<h2 class="text-xl font-bold text-[#000000]" style="font-family: 'Roboto Condensed', sans-serif;">
+						9. Musluk tamiri için yeni musluk almalı mıyım?
+					</h2>
+					<svg class="faq-icon w-6 h-6 text-[#fad000] transform transition-transform duration-200" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+						<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+					</svg>
+				</button>
+				<div id="faq-9" class="faq-answer hidden px-8 pb-6">
+					<p class="text-lg text-[#000000] leading-relaxed" style="font-family: 'Roboto Condensed', sans-serif;">
+						Her zaman yeni musluk almanız gerekmez. Çoğu durumda conta veya kartuş değişimi ile musluk tamiri yapılabilir. Uzman ekibimiz önce mevcut musluğun durumunu değerlendirir. Tamir edilebilir durumdaysa parça değişimi yapılır, aksi halde yeni musluk önerilir. Bu sayede gereksiz masraftan kaçınılır.
+					</p>
+				</div>
+			</div>
+
+			<!-- FAQ Item -->
+			<div class="bg-white rounded-lg shadow-md overflow-hidden">
+				<button
+					class="faq-question w-full text-left px-8 py-6 flex justify-between items-center hover:bg-gray-50 transition-colors duration-200"
+					data-target="faq-10"
+				>
+					<h2 class="text-xl font-bold text-[#000000]" style="font-family: 'Roboto Condensed', sans-serif;">
+						10. Fiyatlandırma nasıl yapılıyor?
+					</h2>
+					<svg class="faq-icon w-6 h-6 text-[#fad000] transform transition-transform duration-200" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+						<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+					</svg>
+				</button>
+				<div id="faq-10" class="faq-answer hidden px-8 pb-6">
+					<p class="text-lg text-[#000000] leading-relaxed" style="font-family: 'Roboto Condensed', sans-serif;">
+						Fiyatlandırma, yapılacak işin kapsamına, kullanılacak malzemenin kalitesine ve işin zorluk derecesine göre belirlenir. Önce sorununuz tespit edilir, sonra size detaylı bir fiyat teklifi sunulur. Fiyat onayından sonra işe başlanır. Şeffaf fiyatlandırma ilkesiyle çalışıyoruz, gizli bir masraf yoktur.
+					</p>
+				</div>
+			</div>
+
+			<!-- FAQ Item -->
+			<div class="bg-white rounded-lg shadow-md overflow-hidden">
+				<button
+					class="faq-question w-full text-left px-8 py-6 flex justify-between items-center hover:bg-gray-50 transition-colors duration-200"
+					data-target="faq-11"
+				>
+					<h2 class="text-xl font-bold text-[#000000]" style="font-family: 'Roboto Condensed', sans-serif;">
+						11. Evde kötü koku varsa tesisattan mı kaynaklanır?
+					</h2>
+					<svg class="faq-icon w-6 h-6 text-[#fad000] transform transition-transform duration-200" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+						<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+					</svg>
+				</button>
+				<div id="faq-11" class="faq-answer hidden px-8 pb-6">
+					<p class="text-lg text-[#000000] leading-relaxed" style="font-family: 'Roboto Condensed', sans-serif;">
+						Evet, evdeki kötü kokuların çoğu tesisat kaynaklıdır. Sifon kuruması, gider tıkanması, boru kaçağı veya rögar doluluğu kötü kokuya neden olabilir. Kameralı görüntüleme ile sorunun kaynağı tespit edilir ve tıkanıklık açma, sifon değişimi veya tamirat işlemleri ile koku tamamen giderilir.
+					</p>
+				</div>
+			</div>
+
+			<!-- FAQ Item -->
+			<div class="bg-white rounded-lg shadow-md overflow-hidden">
+				<button
+					class="faq-question w-full text-left px-8 py-6 flex justify-between items-center hover:bg-gray-50 transition-colors duration-200"
+					data-target="faq-12"
+				>
+					<h2 class="text-xl font-bold text-[#000000]" style="font-family: 'Roboto Condensed', sans-serif;">
+						12. Hangi bölgelerde hizmet veriyorsunuz?
+					</h2>
+					<svg class="faq-icon w-6 h-6 text-[#fad000] transform transition-transform duration-200" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+						<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+					</svg>
+				</button>
+				<div id="faq-12" class="faq-answer hidden px-8 pb-6">
+					<p class="text-lg text-[#000000] leading-relaxed" style="font-family: 'Roboto Condensed', sans-serif;">
+						Samsun ve tüm ilçelerinde hizmet vermekteyiz. İlkadım, Atakum, Canik, Tekkeköy ve diğer tüm ilçelerde profesyonel tesisat hizmetleri sunuyoruz. Acil durumlarda 7/24 ulaşım sağlıyoruz. Detaylı bilgi ve randevu için iletişim kanallarımızdan bize ulaşabilirsiniz.
+					</p>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+</Layout>
+
+<style>
+	.tiled-background-wrapper {
+		--tile-size: 200px;
+		background-color: #eeeeee;
+		position: relative;
+	}
+
+	.tiled-background-pattern {
+		position: absolute;
+		inset: 0;
+		pointer-events: none;
+		z-index: 0;
+		opacity: 0.2;
+		background-size: 200px 200px;
+		background-repeat: repeat;
+		background-position: 0 0;
+	}
+
+	.tiled-background-wrapper > div:not(.tiled-background-pattern) {
+		position: relative;
+		z-index: 1;
+	}
+
+	.parallax-bg {
+		will-change: transform;
+		backface-visibility: hidden;
+		-webkit-backface-visibility: hidden;
+	}
+
+	.faq-question {
+		cursor: pointer;
+	}
+	
+	.faq-answer {
+		transition: all 0.3s ease-out;
+	}
+	
+	.faq-answer.open {
+		display: block;
+	}
+	
+	.faq-icon.rotated {
+		transform: rotate(180deg);
+	}
+</style>
+
+<script>
+	function initParallax() {
+		const parallaxElements = document.querySelectorAll('.parallax-bg');
+		if (parallaxElements.length === 0) return;
+
+		function updateParallax() {
+			const scrollY = window.pageYOffset || window.scrollY || document.documentElement.scrollTop;
+			const scrollFactor = 0.25;
+
+			parallaxElements.forEach((element) => {
+				const htmlElement = element as HTMLElement;
+				const wrapper = htmlElement.closest('.tiled-background-wrapper') as HTMLElement;
+				if (!wrapper) return;
+
+				const offsetY = scrollY * scrollFactor;
+				const tileSize = 200;
+				const normalizedOffset = offsetY % tileSize;
+				
+				htmlElement.style.backgroundPosition = `0 ${normalizedOffset}px`;
+			});
+		}
+
+		let ticking = false;
+		function onScroll() {
+			if (!ticking) {
+				window.requestAnimationFrame(() => {
+					updateParallax();
+					ticking = false;
+				});
+				ticking = true;
+			}
+		}
+
+		updateParallax();
+		window.addEventListener('scroll', onScroll, { passive: true });
+		window.addEventListener('resize', updateParallax);
+
+		return () => {
+			window.removeEventListener('scroll', onScroll);
+			window.removeEventListener('resize', updateParallax);
+		};
+	}
+
+	document.addEventListener('DOMContentLoaded', () => {
+		initParallax();
+		
+		const faqQuestions = document.querySelectorAll('.faq-question');
+		
+		faqQuestions.forEach((question) => {
+			question.addEventListener('click', () => {
+				const targetId = question.getAttribute('data-target');
+				if (!targetId) return;
+				const answer = document.getElementById(targetId);
+				const icon = question.querySelector('.faq-icon');
+				
+				if (answer && icon) {
+					const isOpen = !answer.classList.contains('hidden');
+					
+					// Close all other FAQs
+					document.querySelectorAll('.faq-answer').forEach((ans) => {
+						ans.classList.add('hidden');
+					});
+					document.querySelectorAll('.faq-icon').forEach((ic) => {
+						ic.classList.remove('rotated');
+					});
+					
+					// Toggle current FAQ
+					if (isOpen) {
+						answer.classList.add('hidden');
+						icon.classList.remove('rotated');
+					} else {
+						answer.classList.remove('hidden');
+						icon.classList.add('rotated');
+					}
+				}
+			});
+		});
+	});
+</script>
+

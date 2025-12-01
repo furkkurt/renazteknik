@@ -1,12 +1,19 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import communicationDoodle from '../assets/communicationDoodle.avif';
 ---
 
 <Layout
 	title="İletişim | renazteknik.com"
 	description="Renaz Teknik iletişim bilgileri. Bize ulaşın, sorularınızı sorun, hizmetlerimiz hakkında bilgi alın."
 >
-	<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+	<div class="tiled-background-wrapper relative min-h-screen py-12">
+		<div 
+			class="tiled-background-pattern parallax-bg" 
+			style={`background-image: url('${communicationDoodle.src}');`}
+			aria-hidden="true"
+		></div>
+		<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 relative z-10">
 		<h1 class="text-4xl sm:text-5xl lg:text-6xl font-bold text-[#000000] mb-6" style="font-family: 'Roboto Condensed', sans-serif;">
 			İletişim
 		</h1>
@@ -126,5 +133,86 @@ import Layout from '../layouts/Layout.astro';
 			</div>
 		</div>
 	</div>
+</div>
 </Layout>
+
+<style>
+	.tiled-background-wrapper {
+		--tile-size: 200px;
+		background-color: #eeeeee;
+		position: relative;
+	}
+
+	.tiled-background-pattern {
+		position: absolute;
+		inset: 0;
+		pointer-events: none;
+		z-index: 0;
+		opacity: 0.2;
+		background-size: 200px 200px;
+		background-repeat: repeat;
+		background-position: 0 0;
+	}
+
+	.tiled-background-wrapper > div:not(.tiled-background-pattern) {
+		position: relative;
+		z-index: 1;
+	}
+
+	.parallax-bg {
+		will-change: transform;
+		backface-visibility: hidden;
+		-webkit-backface-visibility: hidden;
+	}
+</style>
+
+<script>
+	function initParallax() {
+		const parallaxElements = document.querySelectorAll('.parallax-bg');
+		if (parallaxElements.length === 0) return;
+
+		function updateParallax() {
+			const scrollY = window.pageYOffset || window.scrollY || document.documentElement.scrollTop;
+			const scrollFactor = 0.25;
+
+			parallaxElements.forEach((element) => {
+				const htmlElement = element as HTMLElement;
+				const wrapper = htmlElement.closest('.tiled-background-wrapper') as HTMLElement;
+				if (!wrapper) return;
+
+				const offsetY = scrollY * scrollFactor;
+				const tileSize = 200;
+				const normalizedOffset = offsetY % tileSize;
+				
+				htmlElement.style.backgroundPosition = `0 ${normalizedOffset}px`;
+			});
+		}
+
+		let ticking = false;
+		function onScroll() {
+			if (!ticking) {
+				window.requestAnimationFrame(() => {
+					updateParallax();
+					ticking = false;
+				});
+				ticking = true;
+			}
+		}
+
+		updateParallax();
+		window.addEventListener('scroll', onScroll, { passive: true });
+		window.addEventListener('resize', updateParallax);
+
+		return () => {
+			window.removeEventListener('scroll', onScroll);
+			window.removeEventListener('resize', updateParallax);
+		};
+	}
+
+	if (document.readyState === 'loading') {
+		document.addEventListener('DOMContentLoaded', initParallax);
+	} else {
+		initParallax();
+	}
+</script>
 

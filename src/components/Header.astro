@@ -2,16 +2,21 @@
 import bgHeader from '../assets/bgHeader.jpg';
 
 const solutions = [
-  { name: "Mutfak, Banyo ve WC Tamirat Tadilat", href: "/mutfak-banyo-wc-tamirat" },
-  { name: "Sıhhi Tesisat", href: "/sihhi-tesisat" },
-  { name: "Gömme ve Duvara Sıfır Klozet Çözümleri", href: "/klozet-cozumleri" },
-  { name: "Temiz Su Pis Su Tesisatı Çözümleri", href: "/temiz-su-pis-su-tesisati" },
-  { name: "Kanal Görüntüleme", href: "/kanal-goruntuleme" },
-  { name: "Akustik Dinleme Yaparak Kaçak Tespiti", href: "/kacak-tespiti" },
+  { name: "Sıhhi Tesisat Çözümleri", href: "/sihhi-tesisat" },
+  { name: "Kombi Bakım ve Arıza Çözümleri", href: "/kombi-bakim-ve-ariza-cozumleri" },
+  { name: "Petek Temizliği", href: "/petek-temizligi" },
+  { name: "Tıkanıklık Açma", href: "/tikaniklik-acma" },
+  { name: "Su Kaçağı Tespiti", href: "/su-kacagi-tespiti" },
+  { name: "Batarya, Musluk, Klozet Tamir & Değişimi", href: "/batarya-musluk-klozet-tamir-degisimi" },
+  { name: "Banyo & Mutfak Yenileme (Tadilat)", href: "/banyo-mutfak-yenileme-tadilat" },
+  { name: "Diğer", href: "/iletisim" },
 ];
 
 const navItems = [
-  { name: "ÇÖZÜMLERİMİZ", href: "#", hasDropdown: true },
+  { name: "HİZMETLER", href: "#", hasDropdown: true },
+  { name: "BLOG", href: "/blog" },
+  { name: "SSS", href: "/sss" },
+  { name: "YORUMLAR", href: "/musteri-yorumlari" },
   { name: "İLETİŞİM", href: "/iletisim" },
   { name: "HAKKIMIZDA", href: "/hakkimizda" },
 ];
@@ -25,7 +30,7 @@ const navItems = [
       <div class="flex-shrink-0">
         <a href="/" class="flex items-center space-x-2 group">
           <div class="h-10 w-1 bg-[#fad000]"></div>
-          <span class="text-3xl font-extrabold text-[#ffffff] tracking-tight group-hover:text-[#000000] transition-colors duration-200" style="font-family: 'Roboto Condensed', sans-serif; text-shadow: 0.5px 0.5px 1px rgba(250, 208, 0, 0.6), -0.5px -0.5px 1px rgba(250, 208, 0, 0.6), 0.5px -0.5px 1px rgba(250, 208, 0, 0.6), -0.5px 0.5px 1px rgba(250, 208, 0, 0.6);">
+          <span class="logo-text text-3xl font-extrabold text-[#ffffff] tracking-tight transition-colors duration-200" style="font-family: 'Roboto Condensed', sans-serif; text-shadow: 0.5px 0.5px 1px rgba(250, 208, 0, 0.6), -0.5px -0.5px 1px rgba(250, 208, 0, 0.6), 0.5px -0.5px 1px rgba(250, 208, 0, 0.6), -0.5px 0.5px 1px rgba(250, 208, 0, 0.6);">
             renazteknik.com
           </span>
         </a>
@@ -142,6 +147,23 @@ const navItems = [
 </header>
 
 <style>
+  /* Logo glow effect */
+  .logo-text {
+    position: relative;
+    padding: 0.25rem 0.5rem;
+    border: 2px solid transparent;
+    border-radius: 4px;
+    transition: all 0.3s ease-out;
+  }
+  
+  .group:hover .logo-text {
+    border-color: #fad000;
+    border-width: 3px;
+    box-shadow: 0 0 10px rgba(250, 208, 0, 0.6),
+                0 0 20px rgba(250, 208, 0, 0.4),
+                0 0 30px rgba(250, 208, 0, 0.2);
+  }
+  
   /* Ensure dropdown animation works smoothly */
   .dropdown-menu {
     transition: opacity 300ms ease-out, transform 300ms ease-out, visibility 300ms ease-out;
