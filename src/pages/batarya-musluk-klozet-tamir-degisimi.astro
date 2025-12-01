@@ -4,8 +4,9 @@ import toiletDoodle from '../assets/toiletDoodle.avif';
 ---
 
 <Layout
-	title="Batarya, Musluk, Klozet Tamir & Değişimi | renazteknik.com"
-	description="Su kaçıran musluklar, bozuk sifonlar, çalışmayan taharet muslukları, klozet arızaları gibi günlük tesisat sorunlarını hızlı şekilde çözüyoruz."
+	title="Samsun Musluk Klozet Tamiri | Batarya Değişimi | renazteknik.com"
+	description="Samsun'da musluk, batarya ve klozet tamiri. Su kaçıran musluk, bozuk sifon, klozet arızası çözümleri. İlkadım, Atakum'da hızlı tamir servisi."
+	keywords="Samsun musluk tamiri, klozet tamiri, batarya değişimi Samsun, İlkadım musluk, Atakum klozet, sifon tamiri"
 >
 	<div class="tiled-background-wrapper relative min-h-screen py-12">
 		<div 
@@ -86,6 +87,31 @@ import toiletDoodle from '../assets/toiletDoodle.avif';
 		</div>
 	</div>
 </Layout>
+
+<script type="application/ld+json" set:html={JSON.stringify({
+	"@context": "https://schema.org",
+	"@type": "Service",
+	"serviceType": "Batarya, Musluk, Klozet Tamir & Değişimi",
+	"provider": {
+		"@type": "LocalBusiness",
+		"name": "Renaz Teknik",
+		"telephone": "+905346706294",
+		"address": {
+			"@type": "PostalAddress",
+			"addressLocality": "Samsun",
+			"addressRegion": "SAMSUN",
+			"addressCountry": "TR"
+		}
+	},
+	"areaServed": [
+		{ "@type": "City", "name": "Samsun" },
+		{ "@type": "City", "name": "İlkadım" },
+		{ "@type": "City", "name": "Atakum" },
+		{ "@type": "City", "name": "Canik" },
+		{ "@type": "City", "name": "Tekkeköy" }
+	],
+	"description": "Su kaçıran musluklar, bozuk sifonlar, çalışmayan taharet muslukları, klozet arızaları gibi günlük tesisat sorunlarını hızlı şekilde çözüyoruz. Batarya, armatür ve klozet montaj işlemlerini temiz işçilikle yaparak uzun ömürlü kullanım sağlıyoruz."
+}).replace(/</g, '\\u003c')} />
 
 <style>
 	.tiled-background-wrapper {

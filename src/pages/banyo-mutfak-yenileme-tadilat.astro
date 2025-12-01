@@ -5,8 +5,9 @@ import bathroomDoodle from '../assets/bathroomDoodle.webp';
 ---
 
 <Layout
-	title="Banyo & Mutfak Yenileme (Tadilat) | renazteknik.com"
-	description="Eskiyen banyo ve mutfaklarınızı modern, kullanışlı ve estetik bir alana dönüştürüyoruz."
+	title="Samsun Banyo Mutfak Yenileme | Tadilat Hizmetleri | renazteknik.com"
+	description="Samsun'da banyo ve mutfak yenileme (tadilat) hizmeti. Modern, kullanışlı ve estetik banyo-mutfak tasarımı. İlkadım, Atakum, Canik'te profesyonel tadilat."
+	keywords="Samsun banyo tadilat, mutfak yenileme, banyo tadilat Samsun, İlkadım tadilat, Atakum banyo, Samsun tadilat"
 >
 	<div class="tiled-background-wrapper relative min-h-screen py-12">
 		<div 
@@ -122,6 +123,31 @@ import bathroomDoodle from '../assets/bathroomDoodle.webp';
 		</div>
 	</div>
 </Layout>
+
+<script type="application/ld+json" set:html={JSON.stringify({
+	"@context": "https://schema.org",
+	"@type": "Service",
+	"serviceType": "Banyo & Mutfak Yenileme (Tadilat)",
+	"provider": {
+		"@type": "LocalBusiness",
+		"name": "Renaz Teknik",
+		"telephone": "+905346706294",
+		"address": {
+			"@type": "PostalAddress",
+			"addressLocality": "Samsun",
+			"addressRegion": "SAMSUN",
+			"addressCountry": "TR"
+		}
+	},
+	"areaServed": [
+		{ "@type": "City", "name": "Samsun" },
+		{ "@type": "City", "name": "İlkadım" },
+		{ "@type": "City", "name": "Atakum" },
+		{ "@type": "City", "name": "Canik" },
+		{ "@type": "City", "name": "Tekkeköy" }
+	],
+	"description": "Eskiyen banyo ve mutfaklarınızı modern, kullanışlı ve estetik bir alana dönüştürüyoruz. Kırım–döküm, tesisat yenileme, seramik değişimi, duşakabin montajı, lavabo–dolap yenileme gibi tüm tadilat süreçlerini tek elden yönetiyoruz."
+}).replace(/</g, '\\u003c')} />
 
 <style>
 	.tiled-background-wrapper {

@@ -4,8 +4,9 @@ import leakageDoodle from '../assets/leakageDoodle.jpg';
 ---
 
 <Layout
-	title="Su Kaçağı Tespiti | renazteknik.com"
-	description="Duvar veya zemin kırmadan, akustik dinleme ve termal kamera gibi ileri teknoloji cihazlarla su kaçaklarını nokta atışı tespit ediyoruz."
+	title="Samsun Su Kaçağı Tespiti | Kırmadan Kaçak Tespiti | renazteknik.com"
+	description="Samsun'da su kaçağı tespiti. Termal kamera ve akustik cihazlarla kırma-dökme olmadan nokta atışı tespit. İlkadım, Atakum, Canik'te profesyonel hizmet."
+	keywords="Samsun su kaçağı tespiti, kırma dökme olmadan kaçak tespiti, termal kamera Samsun, su kaçağı bulma, Samsun tesisat kaçak"
 >
 	<div class="tiled-background-wrapper relative min-h-screen py-12">
 		<div 
@@ -90,6 +91,31 @@ import leakageDoodle from '../assets/leakageDoodle.jpg';
 		</div>
 	</div>
 </Layout>
+
+<script type="application/ld+json" set:html={JSON.stringify({
+	"@context": "https://schema.org",
+	"@type": "Service",
+	"serviceType": "Su Kaçağı Tespiti",
+	"provider": {
+		"@type": "LocalBusiness",
+		"name": "Renaz Teknik",
+		"telephone": "+905346706294",
+		"address": {
+			"@type": "PostalAddress",
+			"addressLocality": "Samsun",
+			"addressRegion": "SAMSUN",
+			"addressCountry": "TR"
+		}
+	},
+	"areaServed": [
+		{ "@type": "City", "name": "Samsun" },
+		{ "@type": "City", "name": "İlkadım" },
+		{ "@type": "City", "name": "Atakum" },
+		{ "@type": "City", "name": "Canik" },
+		{ "@type": "City", "name": "Tekkeköy" }
+	],
+	"description": "Duvar veya zemin kırmadan, akustik dinleme ve termal kamera gibi ileri teknoloji cihazlarla su kaçaklarını nokta atışı tespit ediyoruz. Kaçak sonrası gerekli tamir işlemlerini temiz ve garantili şekilde gerçekleştiriyoruz."
+}).replace(/</g, '\\u003c')} />
 
 <style>
 	.tiled-background-wrapper {

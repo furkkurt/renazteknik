@@ -12,9 +12,9 @@ interface Props {
 }
 
 const {
-	title = "Renaz Teknik - Mutfak, Banyo ve WC Tamirat Tadilat | renazteknik.com",
-	description = "Renaz Teknik - Samsun'da mutfak, banyo ve WC tamirat tadilat hizmetleri. Cihazla su kaçak tespiti, kanal görüntüleme, sıhhi tesisat çözümleri. Profesyonel hizmet, güvenilir çözümler.",
-	keywords = "mutfak tamirat, banyo tadilat, WC tamirat, su kaçak tespiti, kanal görüntüleme, sıhhi tesisat, Samsun tamirat, renaz teknik, banyo yenileme, anahtar teslim banyo",
+	title = "Samsun Sıhhi Tesisat | Kombi Bakım | Su Kaçağı Tespiti | Renaz Teknik",
+	description = "Renaz Teknik - Samsun'da profesyonel sıhhi tesisat hizmetleri. Kombi bakım, petek temizliği, su kaçağı tespiti, tıkanıklık açma, banyo-mutfak tadilat. İlkadım, Atakum, Canik'te 7/24 hizmet.",
+	keywords = "Samsun tesisat, Samsun kombi bakım, su kaçağı tespiti Samsun, İlkadım tesisat, Atakum tesisatçı, Canik tesisat, Samsun banyo tadilat, mutfak tamirat Samsun, renaz teknik",
 	canonicalURL = Astro.url.href,
 } = Astro.props;
 
@@ -50,11 +50,16 @@ const fullTitle = title.includes("renazteknik.com") ? title : `${title} | renazt
 		<meta property="og:description" content={description} />
 		<meta property="og:site_name" content="Renaz Teknik" />
 		<meta property="og:locale" content="tr_TR" />
+		<meta property="og:image" content={`${siteURL}/og-image.jpg`} />
+		<meta property="og:image:width" content="1200" />
+		<meta property="og:image:height" content="630" />
+		<meta property="og:image:alt" content={description} />
 		
 		<!-- Twitter -->
 		<meta name="twitter:card" content="summary_large_image" />
 		<meta name="twitter:title" content={fullTitle} />
 		<meta name="twitter:description" content={description} />
+		<meta name="twitter:image" content={`${siteURL}/og-image.jpg`} />
 		
 		<!-- Additional Meta Tags -->
 		<meta name="theme-color" content="#fad000" />
@@ -65,7 +70,7 @@ const fullTitle = title.includes("renazteknik.com") ? title : `${title} | renazt
 		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 		<link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@300;400;700&display=swap" rel="stylesheet" />
 		
-		<!-- Structured Data (JSON-LD) -->
+		<!-- Enhanced Structured Data (JSON-LD) -->
 		<script type="application/ld+json" set:html={JSON.stringify({
 			"@context": "https://schema.org",
 			"@type": "LocalBusiness",
@@ -87,35 +92,109 @@ const fullTitle = title.includes("renazteknik.com") ? title : `${title} | renazt
 				"latitude": "41.2867",
 				"longitude": "36.3300"
 			},
-			"openingHoursSpecification": {
-				"@type": "OpeningHoursSpecification",
-				"dayOfWeek": [
-					"Monday",
-					"Tuesday",
-					"Wednesday",
-					"Thursday",
-					"Friday",
-					"Saturday"
-				],
-				"opens": "08:00",
-				"closes": "18:00"
-			},
+			"openingHoursSpecification": [
+				{
+					"@type": "OpeningHoursSpecification",
+					"dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
+					"opens": "08:00",
+					"closes": "18:00"
+				}
+			],
 			"sameAs": [
 				"https://wa.me/905346706294"
 			],
 			"description": description,
-			"areaServed": {
-				"@type": "City",
-				"name": "Samsun"
-			},
-			"serviceType": [
-				"Mutfak Tamirat",
-				"Banyo Tadilat",
-				"WC Tamirat",
-				"Su Kaçak Tespiti",
-				"Kanal Görüntüleme",
-				"Sıhhi Tesisat"
-			]
+			"areaServed": [
+				{
+					"@type": "City",
+					"name": "Samsun"
+				},
+				{
+					"@type": "City",
+					"name": "İlkadım"
+				},
+				{
+					"@type": "City",
+					"name": "Atakum"
+				},
+				{
+					"@type": "City",
+					"name": "Canik"
+				},
+				{
+					"@type": "City",
+					"name": "Tekkeköy"
+				}
+			],
+			"hasOfferCatalog": {
+				"@type": "OfferCatalog",
+				"name": "Sıhhi Tesisat Hizmetleri",
+				"itemListElement": [
+					{
+						"@type": "Offer",
+						"itemOffered": {
+							"@type": "Service",
+							"name": "Sıhhi Tesisat Çözümleri",
+							"serviceType": "Plumbing Service",
+							"description": "Ev ve iş yerlerinizdeki tüm sıhhi tesisat ihtiyaçlarını profesyonel ekip ve modern ekipmanlarla çözüyoruz."
+						}
+					},
+					{
+						"@type": "Offer",
+						"itemOffered": {
+							"@type": "Service",
+							"name": "Kombi Bakım ve Arıza Çözümleri",
+							"serviceType": "Boiler Maintenance",
+							"description": "Kombi performansını artıran detaylı bakım işlemleri ve tüm marka-model kombiler için arıza tespiti."
+						}
+					},
+					{
+						"@type": "Offer",
+						"itemOffered": {
+							"@type": "Service",
+							"name": "Petek Temizliği",
+							"serviceType": "Radiator Cleaning",
+							"description": "Kombi ve petek verimini yükselten profesyonel makinelerle petek temizliği."
+						}
+					},
+					{
+						"@type": "Offer",
+						"itemOffered": {
+							"@type": "Service",
+							"name": "Tıkanıklık Açma",
+							"serviceType": "Drain Cleaning",
+							"description": "Gider, banyo, lavabo, tuvalet tıkanıklıklarını kameralı sistemler ve profesyonel makinelerle açıyoruz."
+						}
+					},
+					{
+						"@type": "Offer",
+						"itemOffered": {
+							"@type": "Service",
+							"name": "Su Kaçağı Tespiti",
+							"serviceType": "Leak Detection",
+							"description": "Duvar veya zemin kırmadan, akustik dinleme ve termal kamera ile su kaçaklarını tespit ediyoruz."
+						}
+					},
+					{
+						"@type": "Offer",
+						"itemOffered": {
+							"@type": "Service",
+							"name": "Batarya, Musluk, Klozet Tamir & Değişimi",
+							"serviceType": "Faucet and Toilet Repair",
+							"description": "Su kaçıran musluklar, bozuk sifonlar, klozet arızaları gibi günlük tesisat sorunlarını hızlı şekilde çözüyoruz."
+						}
+					},
+					{
+						"@type": "Offer",
+						"itemOffered": {
+							"@type": "Service",
+							"name": "Banyo & Mutfak Yenileme (Tadilat)",
+							"serviceType": "Bathroom and Kitchen Renovation",
+							"description": "Eskiyen banyo ve mutfaklarınızı modern, kullanışlı ve estetik bir alana dönüştürüyoruz."
+						}
+					}
+				]
+			}
 		}).replace(/</g, '\\u003c')} />
 	</head>
 	<body class="min-h-screen flex flex-col bg-[#eeeeee]">

@@ -4,8 +4,9 @@ import pipesDoodle from '../assets/pipesDoodle.jpg';
 ---
 
 <Layout
-	title="Sıhhi Tesisat Çözümleri | renazteknik.com"
-	description="Sıhhi tesisat çözümleri. Ev ve iş yerlerinizdeki tüm sıhhi tesisat ihtiyaçlarını profesyonel ekip ve modern ekipmanlarla çözüyoruz."
+	title="Samsun Sıhhi Tesisat Çözümleri | Profesyonel Tesisat Hizmetleri | renazteknik.com"
+	description="Samsun'da sıhhi tesisat çözümleri. İlkadım, Atakum, Canik'te profesyonel tesisat tamiri, batarya değişimi, gider sorunları. Hızlı servis, garantili hizmet."
+	keywords="Samsun sıhhi tesisat, İlkadım tesisat tamiri, Atakum tesisat, Canik tesisatçı, banyo tesisat tamiri, mutfak tesisat"
 >
 	<div class="tiled-background-wrapper relative min-h-screen py-12">
 		<div 
@@ -72,6 +73,46 @@ import pipesDoodle from '../assets/pipesDoodle.jpg';
 		</div>
 	</div>
 </Layout>
+
+<script type="application/ld+json" set:html={JSON.stringify({
+	"@context": "https://schema.org",
+	"@type": "Service",
+	"serviceType": "Sıhhi Tesisat Çözümleri",
+	"provider": {
+		"@type": "LocalBusiness",
+		"name": "Renaz Teknik",
+		"telephone": "+905346706294",
+		"address": {
+			"@type": "PostalAddress",
+			"addressLocality": "Samsun",
+			"addressRegion": "SAMSUN",
+			"addressCountry": "TR"
+		}
+	},
+	"areaServed": [
+		{
+			"@type": "City",
+			"name": "Samsun"
+		},
+		{
+			"@type": "City",
+			"name": "İlkadım"
+		},
+		{
+			"@type": "City",
+			"name": "Atakum"
+		},
+		{
+			"@type": "City",
+			"name": "Canik"
+		},
+		{
+			"@type": "City",
+			"name": "Tekkeköy"
+		}
+	],
+	"description": "Ev ve iş yerlerinizdeki tüm sıhhi tesisat ihtiyaçlarını profesyonel ekip ve modern ekipmanlarla çözüyoruz. Banyo – mutfak tesisat tamiri, batarya ve armatür değişimi, su bağlantıları, gider sorunları gibi birçok hizmeti temiz işçilik ve hızlı servisle sunuyoruz."
+}).replace(/</g, '\\u003c')} />
 
 <style>
 	.tiled-background-wrapper {

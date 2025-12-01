@@ -4,8 +4,9 @@ import heaterDoodle from '../assets/heaterDoodle.jpg';
 ---
 
 <Layout
-	title="Kombi Bakım ve Arıza Çözümleri | renazteknik.com"
-	description="Kombi performansını artıran detaylı bakım işlemleri ve tüm marka–model kombiler için arıza tespiti gerçekleştiriyoruz."
+	title="Samsun Kombi Bakım ve Arıza Çözümleri | Tüm Marka Kombi Servisi | renazteknik.com"
+	description="Samsun'da kombi bakım ve arıza çözümleri. Kart arızası, parça değişimi, sıcak su problemi. İlkadım, Atakum'da 7/24 kombi servisi. Garantili hizmet."
+	keywords="Samsun kombi bakım, kombi arıza, kombi servisi Samsun, İlkadım kombi, Atakum kombi tamiri, kombi parça değişimi"
 >
 	<div class="tiled-background-wrapper relative min-h-screen py-12">
 		<div 
@@ -83,6 +84,31 @@ import heaterDoodle from '../assets/heaterDoodle.jpg';
 		</div>
 	</div>
 </Layout>
+
+<script type="application/ld+json" set:html={JSON.stringify({
+	"@context": "https://schema.org",
+	"@type": "Service",
+	"serviceType": "Kombi Bakım ve Arıza Çözümleri",
+	"provider": {
+		"@type": "LocalBusiness",
+		"name": "Renaz Teknik",
+		"telephone": "+905346706294",
+		"address": {
+			"@type": "PostalAddress",
+			"addressLocality": "Samsun",
+			"addressRegion": "SAMSUN",
+			"addressCountry": "TR"
+		}
+	},
+	"areaServed": [
+		{ "@type": "City", "name": "Samsun" },
+		{ "@type": "City", "name": "İlkadım" },
+		{ "@type": "City", "name": "Atakum" },
+		{ "@type": "City", "name": "Canik" },
+		{ "@type": "City", "name": "Tekkeköy" }
+	],
+	"description": "Kombi performansını artıran detaylı bakım işlemleri ve tüm marka-model kombiler için arıza tespiti gerçekleştiriyoruz. Kart arızası, parça değişimi, sıcak su problemi, ısıtma sorunları gibi tüm teknik sorunlarda güvenilir ve garantili servis hizmeti veriyoruz."
+}).replace(/</g, '\\u003c')} />
 
 <style>
 	.tiled-background-wrapper {

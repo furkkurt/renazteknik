@@ -60,6 +60,33 @@ const { Content } = await post.render();
 	</div>
 </Layout>
 
+<script type="application/ld+json" set:html={JSON.stringify({
+	"@context": "https://schema.org",
+	"@type": "BlogPosting",
+	"headline": post.data.title,
+	"description": post.data.description,
+	"image": "https://renazteknik.com/og-image.jpg",
+	"datePublished": post.data.pubDate,
+	"dateModified": post.data.pubDate,
+	"author": {
+		"@type": "Organization",
+		"name": "Renaz Teknik",
+		"url": "https://renazteknik.com"
+	},
+	"publisher": {
+		"@type": "Organization",
+		"name": "Renaz Teknik",
+		"logo": {
+			"@type": "ImageObject",
+			"url": "https://renazteknik.com/icon.svg"
+		}
+	},
+	"mainEntityOfPage": {
+		"@type": "WebPage",
+		"@id": `https://renazteknik.com/blog/${post.slug}`
+	}
+}).replace(/</g, '\\u003c')} />
+
 <style>
 	.prose {
 		color: #000000;

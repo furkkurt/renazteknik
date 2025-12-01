@@ -4,8 +4,9 @@ import lineDoodle from '../assets/lineDoodle.jpg';
 ---
 
 <Layout
-	title="Tıkanıklık Açma | renazteknik.com"
-	description="Gider, banyo, lavabo, tuvalet ve rögar tıkanıklıklarını kameralı sistemler ve profesyonel makinelerle kırmadan açıyoruz."
+	title="Samsun Tıkanıklık Açma | Lavabo Gider Tuvalet Açma | renazteknik.com"
+	description="Samsun'da tıkanıklık açma hizmeti. Lavabo, gider, tuvalet, rögar tıkanıklıklarını kameralı sistemlerle açıyoruz. İlkadım, Atakum'da hızlı servis."
+	keywords="Samsun tıkanıklık açma, lavabo açma, gider açma, tuvalet açma Samsun, İlkadım tıkanıklık, Atakum gider açma"
 >
 	<div class="tiled-background-wrapper relative min-h-screen py-12">
 		<div 
@@ -86,6 +87,31 @@ import lineDoodle from '../assets/lineDoodle.jpg';
 		</div>
 	</div>
 </Layout>
+
+<script type="application/ld+json" set:html={JSON.stringify({
+	"@context": "https://schema.org",
+	"@type": "Service",
+	"serviceType": "Tıkanıklık Açma",
+	"provider": {
+		"@type": "LocalBusiness",
+		"name": "Renaz Teknik",
+		"telephone": "+905346706294",
+		"address": {
+			"@type": "PostalAddress",
+			"addressLocality": "Samsun",
+			"addressRegion": "SAMSUN",
+			"addressCountry": "TR"
+		}
+	},
+	"areaServed": [
+		{ "@type": "City", "name": "Samsun" },
+		{ "@type": "City", "name": "İlkadım" },
+		{ "@type": "City", "name": "Atakum" },
+		{ "@type": "City", "name": "Canik" },
+		{ "@type": "City", "name": "Tekkeköy" }
+	],
+	"description": "Gider, banyo, lavabo, tuvalet ve rögar tıkanıklıklarını kameralı sistemler ve profesyonel makinelerle kırmadan açıyoruz. Tekrar eden tıkanıklıkları kalıcı şekilde çözüyor, kötü kokuları gideriyor ve tesisattaki akışı yeniden düzenliyoruz."
+}).replace(/</g, '\\u003c')} />
 
 <style>
 	.tiled-background-wrapper {

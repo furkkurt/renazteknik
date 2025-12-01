@@ -4,8 +4,9 @@ import heaterDoodle from '../assets/heaterDoodle2.jpg';
 ---
 
 <Layout
-	title="Petek Temizliği | renazteknik.com"
-	description="Kombi ve petek verimini yükselten profesyonel makinelerle kimyasal veya makine destekli petek temizliği yapıyoruz."
+	title="Samsun Petek Temizliği | Profesyonel Petek Temizlik Hizmeti | renazteknik.com"
+	description="Samsun'da petek temizliği hizmeti. %30-40 daha fazla ısı verimi, düşük doğalgaz faturası. İlkadım, Atakum, Canik'te profesyonel petek temizliği."
+	keywords="Samsun petek temizliği, petek temizlik Samsun, radyatör temizliği, İlkadım petek, Atakum petek temizliği, kombi petek temizliği"
 >
 	<div class="tiled-background-wrapper relative min-h-screen py-12">
 		<div 
@@ -79,6 +80,31 @@ import heaterDoodle from '../assets/heaterDoodle2.jpg';
 		</div>
 	</div>
 </Layout>
+
+<script type="application/ld+json" set:html={JSON.stringify({
+	"@context": "https://schema.org",
+	"@type": "Service",
+	"serviceType": "Petek Temizliği",
+	"provider": {
+		"@type": "LocalBusiness",
+		"name": "Renaz Teknik",
+		"telephone": "+905346706294",
+		"address": {
+			"@type": "PostalAddress",
+			"addressLocality": "Samsun",
+			"addressRegion": "SAMSUN",
+			"addressCountry": "TR"
+		}
+	},
+	"areaServed": [
+		{ "@type": "City", "name": "Samsun" },
+		{ "@type": "City", "name": "İlkadım" },
+		{ "@type": "City", "name": "Atakum" },
+		{ "@type": "City", "name": "Canik" },
+		{ "@type": "City", "name": "Tekkeköy" }
+	],
+	"description": "Kombi ve petek verimini yükselten profesyonel makinelerle kimyasal veya makine destekli petek temizliği yapıyoruz. Evinizi daha hızlı ısıtan, faturalarınızı düşüren, sağlıklı ısı dolaşımı sağlayan etkili bir temizlik hizmeti sunuyoruz."
+}).replace(/</g, '\\u003c')} />
 
 <style>
 	.tiled-background-wrapper {
