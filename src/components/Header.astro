@@ -23,7 +23,7 @@ const navItems = [
 ---
 
 <header class="sticky top-0 z-50 shadow-md relative">
-  <div class="absolute inset-0 overflow-hidden" style={`background-image: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url(${bgHeader.src}); background-position: top center; background-size: cover; background-repeat: no-repeat; filter: blur(2px); transform: translateZ(0); will-change: transform; backface-visibility: hidden; -webkit-backface-visibility: hidden;`}></div>
+  <div class="absolute inset-0 overflow-hidden header-bg-scroll" style={`background-image: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url(${bgHeader.src}); background-position: top left; background-size: cover; background-repeat: repeat-x; filter: blur(2px); transform: translateZ(0); will-change: background-position; backface-visibility: hidden; -webkit-backface-visibility: hidden;`}></div>
   <nav class="max-w-7xl mx-auto relative z-10">
     <div class="flex items-center justify-between h-20 px-6 lg:px-8">
       <!-- Logo -->
@@ -102,9 +102,6 @@ const navItems = [
       </button>
     </div>
 
-    <!-- Bottom Border -->
-    <div class="h-1 bg-gradient-to-r from-[#fad000] via-[#fad000] to-transparent"></div>
-
     <!-- Mobile Navigation -->
     <div
       id="mobile-menu"
@@ -144,19 +141,80 @@ const navItems = [
       </div>
     </div>
   </nav>
+  
+  <!-- Bottom Border - Positioned at absolute bottom of header, below dropdown -->
+  <div class="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-[#fad000] via-[#fad000] to-transparent" style="z-index: 1;"></div>
 </header>
 
 <style>
-  /* Logo glow effect */
+  /* Header background horizontal scroll animation */
+  @keyframes scrollHeaderBg {
+    0% {
+      background-position-x: 0;
+    }
+    100% {
+      background-position-x: -100vw;
+    }
+  }
+  
+  .header-bg-scroll {
+    animation: scrollHeaderBg 30s linear infinite;
+    background-position-y: top !important;
+  }
+  
+  /* Logo flickering effect */
   .logo-text {
     position: relative;
     padding: 0.25rem 0.5rem;
     border: 2px solid transparent;
     border-radius: 4px;
-    transition: all 0.3s ease-out;
   }
   
-  .group:hover .logo-text {
+  /* Flickering animation - flickers a few times then stays on */
+  @keyframes flicker {
+    0% {
+      border-color: transparent;
+      border-width: 2px;
+      box-shadow: none;
+    }
+    20% {
+      border-color: #fad000;
+      border-width: 3px;
+      box-shadow: 0 0 10px rgba(250, 208, 0, 0.6),
+                  0 0 20px rgba(250, 208, 0, 0.4),
+                  0 0 30px rgba(250, 208, 0, 0.2);
+    }
+    40% {
+      border-color: transparent;
+      border-width: 2px;
+      box-shadow: none;
+    }
+    60% {
+      border-color: #fad000;
+      border-width: 3px;
+      box-shadow: 0 0 15px rgba(250, 208, 0, 0.8),
+                  0 0 25px rgba(250, 208, 0, 0.6),
+                  0 0 35px rgba(250, 208, 0, 0.4);
+    }
+    80% {
+      border-color: transparent;
+      border-width: 2px;
+      box-shadow: none;
+    }
+    100% {
+      border-color: #fad000;
+      border-width: 3px;
+      box-shadow: 0 0 10px rgba(250, 208, 0, 0.6),
+                  0 0 20px rgba(250, 208, 0, 0.4),
+                  0 0 30px rgba(250, 208, 0, 0.2);
+    }
+  }
+  
+  .logo-text.flickering {
+    animation: flicker 0.5s forwards;
+  }
+  
+  .logo-text.active {
     border-color: #fad000;
     border-width: 3px;
     box-shadow: 0 0 10px rgba(250, 208, 0, 0.6),
@@ -167,6 +225,7 @@ const navItems = [
   /* Ensure dropdown animation works smoothly */
   .dropdown-menu {
     transition: opacity 300ms ease-out, transform 300ms ease-out, visibility 300ms ease-out;
+    z-index: 60 !important;
   }
   
   .group:hover .dropdown-menu {
@@ -186,15 +245,29 @@ const navItems = [
   }
   
   .mobile-dropdown.mobile-menu-open {
-    max-height: 1000px;
+    max-height: calc(100vh - 80px); /* Viewport height minus header height */
     opacity: 1;
     transform: translateY(0);
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+    overscroll-behavior: contain;
   }
   
   .mobile-dropdown.hidden {
     max-height: 0;
     opacity: 0;
     transform: translateY(-10px);
+    overflow: hidden;
+  }
+  
+  /* Prevent body scroll when mobile menu is open */
+  body.mobile-menu-open {
+    overflow: hidden !important;
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    left: 0;
+    right: 0;
   }
   
   /* Prevent zoom on mobile */
@@ -212,6 +285,75 @@ const navItems = [
 </style>
 
 <script>
+  // Audio setup
+  let cogsAudio: HTMLAudioElement | null = null;
+  let buzzingAudio: HTMLAudioElement | null = null;
+  
+  // Preload audio files
+  function initAudio() {
+    cogsAudio = new Audio('/cogs.mp3');
+    cogsAudio.preload = 'auto';
+    cogsAudio.volume = 0.5;
+    
+    buzzingAudio = new Audio('/buzzing.mp3');
+    buzzingAudio.preload = 'auto';
+    buzzingAudio.volume = 0.3;
+    buzzingAudio.loop = true;
+  }
+  
+  // Play cogs sound on mousedown anywhere on page
+  document.addEventListener('DOMContentLoaded', () => {
+    initAudio();
+    
+    // Play cogs sound on mousedown
+    document.addEventListener('mousedown', () => {
+      if (cogsAudio) {
+        cogsAudio.currentTime = 0;
+        cogsAudio.play().catch(() => {
+          // Ignore audio play errors
+        });
+      }
+    }, { passive: true });
+    
+    // Logo hover effect with flickering and buzzing sound
+    const logoText = document.querySelector('.logo-text');
+    const logoLink = document.querySelector('a[href="/"]');
+    
+    if (logoLink && logoText) {
+      let hasFlickered = false;
+      
+      logoLink.addEventListener('mouseenter', () => {
+        if (!hasFlickered) {
+          logoText.classList.add('flickering');
+          hasFlickered = true;
+          
+          // After animation completes, add active class and remove flickering
+          setTimeout(() => {
+            logoText.classList.remove('flickering');
+            logoText.classList.add('active');
+          }, 500);
+        } else {
+          logoText.classList.add('active');
+        }
+        
+        if (buzzingAudio) {
+          buzzingAudio.currentTime = 0;
+          buzzingAudio.play().catch(() => {
+            // Ignore audio play errors
+          });
+        }
+      });
+      
+      logoLink.addEventListener('mouseleave', () => {
+        logoText.classList.remove('active');
+        if (buzzingAudio) {
+          buzzingAudio.pause();
+          buzzingAudio.currentTime = 0;
+        }
+      });
+    }
+  });
+  
   // Mobile menu toggle
   const mobileMenuButton = document.getElementById('mobile-menu-button');
   const mobileMenu = document.getElementById('mobile-menu');
@@ -232,12 +374,22 @@ const navItems = [
       const isHidden = mobileMenu.classList.contains('hidden');
       
       if (isHidden) {
+        // Save current scroll position
+        const scrollY = window.scrollY || window.pageYOffset || document.documentElement.scrollTop;
+        const bodyTop = document.body.getBoundingClientRect().top;
+        const savedScrollPosition = scrollY || Math.abs(bodyTop);
+        
         mobileMenu.classList.remove('hidden');
         // Force reflow
         mobileMenu.offsetHeight;
         // Add open class for animation
         setTimeout(() => {
           mobileMenu.classList.add('mobile-menu-open');
+          // Prevent body scrolling
+          document.body.style.top = `-${savedScrollPosition}px`;
+          document.body.classList.add('mobile-menu-open');
+          // Store scroll position in a data attribute for later restoration
+          document.body.setAttribute('data-scroll-position', savedScrollPosition.toString());
         }, 10);
         
         // Toggle icon to X
@@ -247,6 +399,17 @@ const navItems = [
         }
       } else {
         mobileMenu.classList.remove('mobile-menu-open');
+        
+        // Restore body scrolling and scroll position
+        const savedScrollPosition = document.body.getAttribute('data-scroll-position');
+        document.body.classList.remove('mobile-menu-open');
+        document.body.style.top = '';
+        document.body.removeAttribute('data-scroll-position');
+        
+        if (savedScrollPosition) {
+          window.scrollTo(0, parseInt(savedScrollPosition, 10));
+        }
+        
         // Wait for animation to complete before hiding
         setTimeout(() => {
           mobileMenu.classList.add('hidden');

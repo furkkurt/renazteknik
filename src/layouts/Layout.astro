@@ -196,8 +196,42 @@ const fullTitle = title.includes("renazteknik.com") ? title : `${title} | renazt
 				]
 			}
 		}).replace(/</g, '\\u003c')} />
+		<style>
+			.custom-cursor {
+				position: fixed;
+				width: 64px;
+				height: 64px;
+				background-image: url('/wrench.png');
+				background-size: contain;
+				background-repeat: no-repeat;
+				background-position: center;
+				pointer-events: none;
+				z-index: 9999;
+				transform: translate(-50%, -50%) rotate(0deg);
+				opacity: 0;
+				transition: opacity 0.2s ease, transform 0.1s ease;
+			}
+			
+			.custom-cursor.visible {
+				opacity: 1;
+			}
+			
+			.custom-cursor.rotated {
+				transform: translate(-50%, -50%) rotate(15deg);
+			}
+			
+			/* Hide cursor on mobile/touch devices */
+			@media (hover: none) and (pointer: coarse) {
+				.custom-cursor {
+					display: none;
+				}
+			}
+		</style>
 	</head>
 	<body class="min-h-screen flex flex-col bg-[#eeeeee]">
+		<!-- Custom Cursor -->
+		<div id="custom-cursor" class="custom-cursor"></div>
+		
 		<Header />
 		<main class="flex-grow">
 			<slot />
@@ -205,4 +239,78 @@ const fullTitle = title.includes("renazteknik.com") ? title : `${title} | renazt
 		<Footer />
 		<WhatsAppButton />
 	</body>
+	
+	<script>
+		// Custom cursor that follows mouse
+		(function() {
+			const cursor = document.getElementById('custom-cursor');
+			if (!cursor) return;
+			
+			let mouseX = 0;
+			let mouseY = 0;
+			let cursorX = 0;
+			let cursorY = 0;
+			
+			// Update cursor position with minimal latency
+			function updateCursor() {
+				const cursorElement = document.getElementById('custom-cursor');
+				if (!cursorElement) return;
+				
+				const dx = mouseX - cursorX;
+				const dy = mouseY - cursorY;
+				
+				// Very fast cursor following - higher interpolation for minimal latency
+				cursorX += dx * 0.85;
+				cursorY += dy * 0.85;
+				
+				// Update position - CSS handles transform (centering + rotation)
+				cursorElement.style.left = cursorX + 'px';
+				cursorElement.style.top = cursorY + 'px';
+				
+				requestAnimationFrame(updateCursor);
+			}
+			
+			// Track mouse movement
+			document.addEventListener('mousemove', (e) => {
+				mouseX = e.clientX;
+				mouseY = e.clientY;
+				
+				if (cursor && !cursor.classList.contains('visible')) {
+					cursor.classList.add('visible');
+				}
+			});
+			
+			// Rotate wrench on mousedown
+			document.addEventListener('mousedown', () => {
+				if (cursor) {
+					cursor.classList.add('rotated');
+				}
+			});
+			
+			// Rotate wrench back on mouseup
+			document.addEventListener('mouseup', () => {
+				if (cursor) {
+					cursor.classList.remove('rotated');
+				}
+			});
+			
+			// Hide cursor when mouse leaves window
+			document.addEventListener('mouseleave', () => {
+				if (cursor) {
+					cursor.classList.remove('visible');
+					cursor.classList.remove('rotated');
+				}
+			});
+			
+			// Show cursor when mouse enters window
+			document.addEventListener('mouseenter', () => {
+				if (cursor) {
+					cursor.classList.add('visible');
+				}
+			});
+			
+			// Start animation loop
+			updateCursor();
+		})();
+	</script>
 </html>

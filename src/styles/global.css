@@ -53,3 +53,8 @@
 .hero-content-right.animate-in {
   animation: slideInRight 1s ease-out forwards;
 }
+
+/* Hide default cursor */
+* {
+  cursor: none !important;
+}
